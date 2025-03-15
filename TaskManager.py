@@ -2,16 +2,23 @@ import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QListWidget, QVBoxLayout, QPushButton, QWidget, QInputDialog, QMessageBox
 from PyQt6.QtGui import QDragEnterEvent, QDropEvent, QDrag
 from PyQt6.QtCore import Qt, QMimeData
+from PyQt6.QtCore import pyqtSignal
 
 # Клас для створення списку завдань з можливістю перетягування
 class TaskList(QListWidget):
+    itemAdded = pyqtSignal()  # Оголошуємо сигнал
+
     def __init__(self):
         super().__init__()
         self.setAcceptDrops(True)  
         self.setDragEnabled(True) 
-        self.setSelectionMode(QListWidget.SelectionMode.SingleSelection)  # Режим вибору одного елемента
-        self.setDefaultDropAction(Qt.DropAction.MoveAction)  # Встановлення дії при падінні (переміщення)
-    
+        self.setSelectionMode(QListWidget.SelectionMode.SingleSelection)
+        self.setDefaultDropAction(Qt.DropAction.MoveAction)
+
+    def addItem(self, text):
+        super().addItem(text)  # Викликаємо стандартний метод додавання
+        self.itemAdded.emit()  # Відправляємо сигнал після додавання
+        
     # Метод для початку перетягування
     def startDrag(self, supportedActions):
         item = self.currentItem() 
