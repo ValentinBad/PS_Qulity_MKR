@@ -1,8 +1,12 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QListWidget, QVBoxLayout, QPushButton, QWidget, QInputDialog, QMessageBox
 from PyQt6.QtGui import QDragEnterEvent, QDropEvent, QDrag
-from PyQt6.QtCore import Qt, QMimeData
-from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtCore import Qt, QMimeData, pyqtSignal
+
+# Перед ініціалізацією програми
+app = QApplication(sys.argv)
+app.setAttribute(Qt.ApplicationAttribute.AA_ShareOpenGLContexts)  # Поділення контекстами OpenGL
+app.setStyle("Fusion")  # Стиль для кращого вигляду в безголовному режимі
 
 # Клас для створення списку завдань з можливістю перетягування
 class TaskList(QListWidget):
@@ -89,7 +93,6 @@ class TaskManager(QMainWindow):
     
 # Основна частина програми
 if __name__ == "__main__":
-    app = QApplication(sys.argv)  # Створюємо об'єкт застосунку
     window = TaskManager()  # Створюємо головне вікно
     window.show()  # Відображаємо вікно
     sys.exit(app.exec())  # Запускаємо цикл подій застосунку
