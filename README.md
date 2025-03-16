@@ -187,6 +187,26 @@ fact EachUserHasTasks {
 - Послідовності.
 
 1. Діаграма класів
+```
+@startuml
+class TaskList {
+    +addItem(text: str)
+    +startDrag(supportedActions: Qt.DropAction)
+    +dragEnterEvent(event: QDragEnterEvent)
+    +dragMoveEvent(event: QDropEvent)
+    +dropEvent(event: QDropEvent)
+    -itemAdded: pyqtSignal
+}
+
+class TaskManager {
+    +add_task(list_name: str)
+    +edit_task(list_name: str)
+    -lists: dict
+}
+
+TaskList "1" *-- "1..*" TaskManager : manages >
+@enduml
+```
 Ця діаграма описує структуру вашого коду, зокрема взаємодію між класами.
 
 TaskList:
@@ -194,13 +214,30 @@ TaskList:
 Це клас, який відповідає за список завдань. Він має методи для додавання елементів, обробки подій перетягування (drag and drop), а також для сигналу після додавання елемента (itemAdded).
 У класі є методи для перетягування елементів (startDrag, dragEnterEvent, dragMoveEvent, dropEvent), що дозволяють переміщати завдання між списками.
 TaskManager:
+![image](https://github.com/user-attachments/assets/02ea7f1e-572d-4975-af33-bbbbf79a1dce)
 
 Головний клас, який управляє кількома списками завдань. Він створює і керує різними списками завдань, зокрема додає або редагує завдання через відповідні методи (add_task, edit_task).
 Клас зберігає словник lists, де кожен список завдань представлений як екземпляр класу TaskList.
 У діаграмі вказано, що клас TaskManager управляє кількома об'єктами класу TaskList через асоціацію.
 
 2. Діаграма випадків використання
+```
+@startuml
+actor User
+
+User -> (Add Task)
+User -> (Edit Task)
+User -> (Drag and Drop Tasks)
+
+(Add Task) --> (Enter Task Name)
+(Edit Task) --> (Select Task)
+(Drag and Drop Tasks) --> (Move Task Between Lists)
+
+@enduml
+
+```
 Ця діаграма показує, як користувач взаємодіє з програмою. Вона описує основні сценарії:
+![image](https://github.com/user-attachments/assets/30f00583-6045-4284-b334-1d0637be83b4)
 
 Add Task:
 
@@ -214,7 +251,28 @@ Drag and Drop Tasks:
 Ці випадки використання відображають, як користувач може взаємодіяти з додатком для управління завданнями.
 
 3. Діаграма послідовності
+```
+@startuml
+actor User
+entity TaskManager
+entity TaskList
+
+User -> TaskManager : Add Task
+TaskManager -> TaskList : addItem(text)
+TaskList -> TaskList : itemAdded.emit()
+
+User -> TaskManager : Edit Task
+TaskManager -> TaskList : getSelectedItem()
+TaskList -> TaskManager : Display Edit Dialog
+TaskManager -> TaskList : updateTask()
+
+User -> TaskList : Drag and Drop Task
+TaskList -> TaskList : handleDragEvent()
+@enduml
+```
+
 Ця діаграма описує, як відбуваються взаємодії між об'єктами в процесі виконання певних операцій.
+![image](https://github.com/user-attachments/assets/eed33bab-2999-4126-b47b-b290fd39cd41)
 
 Add Task:
 
