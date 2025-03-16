@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/9bcdf9f0-bfd5-4bf6-8ace-b9691622b3b9)‎‎‎‎‏‎  ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ‏‏‎‏‎М‎‎‏‎‏‎‏‎і‏‎ністерство освіти і науки України
+ ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ‏‏‎‏‎М‎‎‏‎‏‎‏‎і‏‎ністерство освіти і науки України
 
 ㅤㅤㅤㅤㅤㅤДержавний університет "Київський авіаційний інститут" Кафедра інженерії програмного забезпечення
 
@@ -145,5 +145,5 @@
 - Статичний аналіз коду.
 - Збір базових метрик.
 ![image](https://github.com/user-attachments/assets/d50b7b03-9fa1-436b-bf6e-9f987562f5f7)
-![image](https://github.com/user-attachments/assets/cf797ad5-d8c1-4ee7-8cfa-f302729eae83)
 
+![image](https://github.com/user-attachments/assets/4cbdd4f0-809e-43e9-ae5f-b662280e0155)
